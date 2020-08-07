@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    banco:  
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: "meulinkindb2020!"
+            MYSQL_DATABASE: "meulinkindb"
+        ports:
+        - "3306:3306"
+        volumes:
+        - ./banco:/var/lib/mysql
+
+
+    webapplication:
+        build:
+            ./
+        command: 
+            bash -c "npm install; nodemon index.js --color=always"  
+        ports:  
+            - "8080:8080"  
+            - "5858:5858"  
+        volumes:  
+            - ./:/usr/src/app
+        links:  
+            - 'banco'  
