@@ -15,9 +15,9 @@ app.use(methodOverride('_method'));
 app.use(helmet());
 
 require('./src/model/database');
-console.log('fdsag', __dirname)
-// app.set('views','src/views');
+
 app.set('view engine', 'html');
+
 nunjucks.configure('src/view', { 
     autoescape: true,
     express: app

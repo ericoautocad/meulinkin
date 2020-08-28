@@ -12,7 +12,7 @@ const validaRequisicao = validations => {
   
       req.erros_validacao = errors.array();
       
-    //   res.status(400);
+      return next();
     };
   };
   
