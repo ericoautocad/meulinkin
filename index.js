@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const helmet = require('helmet');
+const nunjucks = require('nunjucks');
 const app = express();
 const port = 8080;
 
@@ -14,9 +15,13 @@ app.use(methodOverride('_method'));
 app.use(helmet());
 
 require('./src/model/database');
-
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'src/view'));
+console.log('fdsag', __dirname)
+// app.set('views','src/views');
+app.set('view engine', 'html');
+nunjucks.configure('src/view', { 
+    autoescape: true,
+    express: app
+});
 
 require('./src/index')(app);
 

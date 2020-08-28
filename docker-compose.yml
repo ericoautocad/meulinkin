@@ -18,8 +18,7 @@ services:
         command: 
             bash -c "npm install; nodemon index.js --color=always"  
         ports:  
-            - "8080:8080"  
-            - "5858:5858"  
+            - "8000:8080"
         volumes:  
             - ./:/usr/src/app
         links:  
