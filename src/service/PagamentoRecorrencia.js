@@ -1,6 +1,6 @@
 const pagarme = require('pagarme')
-const API_KEY = 'ak_live_y6JYUJlnJAQt7uq8oWjJotoCsS7VDW';
-const ID_PLANO_PREMIUM = 1046349;
+const API_KEY = 'ak_test_BuZnffPZ3fUbhyeFEzQOqp4cSSxm9z';
+const ID_PLANO_PREMIUM = 499677;
 
 class PagamentoRecorrencia {
 
@@ -71,6 +71,44 @@ class PagamentoRecorrencia {
             }));
             */
         // then( assinatura => console.log('dados assinatura: ', assinatura));
+    }
+
+    cancelarAssinatura(idAssinatura) {
+        pagarme.client.connect({ api_key: API_KEY })
+        .then(client => client.subscriptions.cancel({ id: idAssinatura }))
+        .then(subscription => console.log(subscription))
+    }
+
+    obtemTransacoesAssinatura(idAssinatura) {
+        pagarme.client.connect({ api_key: API_KEY })
+        .then(client => client.subscriptions.findTransactions({ id: idAssinatura }))
+        .then(subscription => console.log(subscription))
+    }
+
+    obtemAssinatura(idAssinatura) {
+        pagarme.client.connect({ api_key: API_KEY })
+        .then(client => client.subscriptions.find({ id: idAssinatura }))
+        .then(subscription => console.log(subscription))
+    }
+
+    verificaCartao(dadosCartao) {
+        // pagarme.client.connect({ api_key: API_KEY })
+        // pega os erros de validação nos campos do form e a bandeira do cartão
+        var cardValidations = pagarme.validate({card: dadosCartao})
+        console.log(cardValidations);
+        
+        return cardValidations;
+    }
+
+    geraPlano() {
+        pagarme.client.connect({ api_key: API_KEY })
+        .then(client => client.plans.create({
+            amount: 400,
+            days: 1,
+            name: 'Plano estudante',
+            payment_methods: ['credit_card']
+        }))
+        .then(plano => console.log(plano))
     }
 
     obtemSaldo() {

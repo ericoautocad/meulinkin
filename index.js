@@ -18,12 +18,16 @@ require('./src/model/database');
 
 app.set('view engine', 'html');
 
-nunjucks.configure('src/view', { 
+const engineTemplate = nunjucks.configure('src/view', { 
     autoescape: true,
     express: app
 });
 
+engineTemplate.addGlobal('urlSite', 'http://localhost:8000');
+
 require('./src/index')(app);
+
+app.use(express.static('public'));
 
 app.listen(port, () =>{
     console.log('Express has been starte on port: ' + port);

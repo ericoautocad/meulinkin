@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <title>O Link.in</title>
+</head>
+
+<body>
+    <!-- Modal Add Links/Redes sociais-->
+    <div class="modal fade modalAdds" id="modalLinks" tabindex="-1" aria-labelledby="addLinksLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <h3>Links de sites ou redes sociais</h3>
+                <form>
+                    <input type="text" placeholder="Nome do botão" required>
+                    <input type="text" placeholder="Cole seu link aqui" required>
+                    <div class="actions-modal">
+                        <button type="submit" class="btn-padrao">Inserir</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal aparencias PRO -->
+    <div class="modal fade modalserpro" id="modalSerpro" tabindex="-1" aria-labelledby="modalSerproLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <i class="fas fa-lock"></i>
+                <p>Tema disponível apenas na versão <b>PRÓ</b></p>
+                <a href="#" class="btn-padrao">me tornar <b>pró</b> e ativar tema</a>
+            </div>
+        </div>
+    </div>
+    <header>
+        <!-- Menu -->
+        <aside class="sidebar">
+            <label for="handle"><i class="fas fa-bars bars"></i></label>
+            <input id="handle" type="checkbox" name="handle">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Início
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Suporte
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Minha conta
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-padrao">
+                            Mudar para Pró
+                        </a>
+                    </li>
+                    <li class="mini">
+                        <a href="#">
+                            Sair
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <a href="#" class="logo">
+            <img src="images/logo-olinkin.png">
+        </a>
+        <!-- nav desktop -->
+        <nav class="desktop">
+            <a href="#">Sair</a>
+            <a href="#" class="btn-padrao">Mudar para Pró</a>
+            <a href="#">Minha conta</a>
+            <a href="#">Suporte</a>
+            <a href="#">Início</a>
+        </nav>
+    </header>
+    <div class="header-mylink">
+        <h6>Seu link:</h6>
+        <input id="myLinkUrl" class="myLinkUrl" value="olink.in/lennonrc84" />
+
+        <a href="#" id="clickMe" class="copy">copiar</a>
+    </div>
+    <div class="wrap">
+
+        <div class="tabset">
+            <!-- Tab 1 -->
+
+            <input type="radio" name="tabset" id="tab1" aria-controls="perfil" checked>
+            <label for="tab1">Perfil</label>
+
+
+            <!-- Tab 2 -->
+            <input type="radio" name="tabset" id="tab2" aria-controls="links">
+            <label for="tab2">Links</label>
+            <!-- Tab 3 -->
+            <input type="radio" name="tabset" id="tab3" aria-controls="aparencia">
+            <label for="tab3">Aparência</label>
+
+            <div class="tab-panels">
+                <section id="perfil" class="tab-panel">
+                    <div class="cadastro">
+                        <form class="padrao">
+                            <div class="">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"><i class="fas fa-camera"></i></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image: url(https://telessaude.se.gov.br/wp-content/uploads/2019/04/perfil-blog.png);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <label for="nperfil">Nome do perfil:</label>
+                                <input type="text" name="nperfil" required value="Lennon">
+                            </div>
+                            <div class="">
+                                <label for="mylink">Seu link:</label>
+                                <input type="text" name="mylink" required value="olink.in/lennonrc84">
+                            </div>
+                            <div class="">
+                                <label for="cemail">Resumo do perfil:</label>
+                                <textarea type="email" name="cemail" required>Lorem ipsum dolor</textarea>
+                            </div>
+                            <div class="">
+                                <label for="area">Área de atuação</label>
+                                <select>
+                                    <option selected>Primeira área</option>
+                                    <option>Segunda área</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <input type="submit" value="criar" class="btn-padrao">
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                <section id="links" class="tab-panel">
+                    <div class="dropdown">
+                        <a class="novo-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Criar novo link
+                        </a>
+                      
+                        <div class="dropdown-menu dropdownAdd" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#"  data-toggle="modal" data-target="#modalLinks">Links de sites ou redes sociais</a>
+                          <a class="dropdown-item" href="#">Atalho para whatsapp</a>
+                          <a class="dropdown-item" href="#">Atalho para ligação</a>
+                          <a class="dropdown-item" href="#">Inserir Vídeo</a>
+                        </div>
+                      </div>
+                    <form class="links-list">
+                        <ol>
+                            <li class="links-item">
+                                <div class="links-options btn-group dropleft">
+                                    <button type="button" class="btn-dropdown" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        ...
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-arrow-down"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-arrow-up"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="far fa-edit"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                                <h3>Instagram</h3>
+                                <span>instagram.com/lennonrc84</span>
+                            </li>
+                            <li class="links-item">
+                                <div class="links-options btn-group dropleft">
+                                    <button type="button" class="btn-dropdown" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        ...
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-arrow-down"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-arrow-up"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="far fa-edit"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                                <h3>Facebook</h3>
+                                <span>Facebook.com/lennonrc84</span>
+                            </li>
+                            <li class="links-item">
+                                <div class="links-options btn-group dropleft">
+                                    <button type="button" class="btn-dropdown" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        ...
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-arrow-down"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-arrow-up"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="far fa-edit"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                                <h3>Youtube</h3>
+                                <span>youtube.com/lennonrc84</span>
+                            </li>
+                        </ol>
+                    </form>
+                </section>
+                <section id="aparencia" class="tab-panel aparencia">
+                    <div class=" slider1 owl-carousel" data-slider-id="1">
+                        <div>
+                            <img src="images/aparenciaG.png">
+                        </div>
+                        <div>
+                            <img src="images/aparenciaG.png">
+                        </div>
+                        <div>
+                            <img src="images/aparenciaG.png">
+                        </div>
+                        <div>
+                            <img src="images/aparenciaG.png">
+                        </div>
+                        <div>
+                            <img src="images/aparenciaG.png">
+                        </div>
+                    </div>
+                    <div class="owl-thumbs" data-slider-id="1">
+                        <button class="owl-thumb-item closed"  data-toggle="modal" data-target="#modalSerpro">
+                            <div class="userimg">
+                                <img src="https://source.unsplash.com/random/1200x800" alt="">
+                            </div>
+                        </button>
+                        <button class="owl-thumb-item">
+                            <div class="userimg">
+                                <img src="https://picsum.photos/id/237/1200/800" alt="">
+                            </div>
+                        </button>
+                        <button class="owl-thumb-item">
+                            <div class="userimg">
+                                <img src="http://lorempixel.com/1200/800/sports/" alt="">
+                            </div>
+                        </button>
+                        <button class="owl-thumb-item">
+                            <div class="userimg">
+                                <img src="http://lorempixel.com/1200/800/sports/" alt="">
+                            </div>
+                        </button>
+                        <button class="owl-thumb-item">
+                            <div class="userimg">
+                                <img src="http://lorempixel.com/1200/800/sports/" alt="">
+                            </div>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
+</body>
+
+</html>
