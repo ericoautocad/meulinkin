@@ -20,7 +20,7 @@ const model = sequelize.define('assinatura', {
     status: { 
         type: DataTypes.STRING(50),
         allowNull : false, 
-        defaultValue : 'ativa'
+        defaultValue : 'ativo'
 
      }
     }, {

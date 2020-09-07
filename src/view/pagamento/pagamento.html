@@ -67,7 +67,7 @@
     <div class="wrap">
         <div class="cadastro">
             <h2>Pagamento</h2>
-            <form class="padrao">
+            <form class="padrao" method="POST" action="/pagamento/pro">
                 <div class="">
                     <label for="cartao">Qual seu cartão:</label>
                     <select name="cartao">
@@ -77,22 +77,22 @@
                 </div>
                 <div class="">
                     <label for="nome">Seu nome (como no cartão)</label>
-                    <input type="text" name="nome" required>
+                    <input type="text" name="card_holder_name" value="{{inputParams.card_holder_name}}" required>
                 </div>
                 <div class="">
                     <label for="ncard">Número do cartão:</label>
-                    <input type="text" name="ncard" required>
+                    <input type="text" name="card_number" value="{{inputParams.card_number}}" required>
                 </div>
                 <div class="duas-colunas">
                     <div>
 
                         <label for="tel">Validade:</label>
-                        <input type="text" name="tel" required>
+                        <input type="text" name="card_expiration_date" value="{{inputParams.card_expiration_date}}" required>
                     </div>
                     <div>
 
                         <label for="tel">CCV:</label>
-                        <input type="text" name="tel" required>
+                        <input type="text" name="card_cvv" value="{{inputParams.card_cvv}}" required>
                     </div>
 
 
