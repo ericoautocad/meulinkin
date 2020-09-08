@@ -23,9 +23,9 @@ const engineTemplate = nunjucks.configure('src/view', {
     express: app
 });
 
-engineTemplate.addGlobal('urlSite', 'http://localhost:8000');
+engineTemplate.addGlobal('urlSite', 'http://localhost:8080');
 
-require('./src/index')(app);
+require('./src/rotas')(app);
 
 app.use(express.static('public'));
 
