@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('meulinkindb', 'root', '', {
-    host: 'localhost', 
+const sequelize = new Sequelize('meulinkindb', 'root', 'meulinkindb2020!', {
+    host: 'banco', 
     port: 3306, 
     dialect: 'mysql', 
     operatorsAliasses: Sequelize.Op

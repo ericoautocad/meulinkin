@@ -1,6 +1,6 @@
 const pagarme = require('pagarme')
 const API_KEY = 'ak_test_BuZnffPZ3fUbhyeFEzQOqp4cSSxm9z';
-const ID_PLANO_PREMIUM = 499677;
+const ID_PLANO_PROFISSIONAL = 499677;
 
 class PagamentoRecorrencia {
 
@@ -33,10 +33,10 @@ class PagamentoRecorrencia {
         .then(card_hash => console.log('id_cartao: ' + card_hash))
     }
 
-    criarAssinatura(dataAssinatura) {
-        pagarme.client.connect({ api_key: API_KEY })
-        .then(client => client.subscriptions.create({
-            plan_id: dataAssinatura.plan_id,
+    async criarAssinatura(dataAssinatura) {
+        const conexao = await pagarme.client.connect({ api_key: API_KEY });
+        const operacao = await conexao.subscriptions.create({
+            plan_id: ID_PLANO_PROFISSIONAL,
             card_number: dataAssinatura.card_number,
             card_holder_name: dataAssinatura.card_holder_name,
             card_expiration_date: dataAssinatura.card_expiration_date,
@@ -45,32 +45,29 @@ class PagamentoRecorrencia {
                 email: dataAssinatura.customer.email,
                 document_number: dataAssinatura.customer.document_number
             }
-            }))
-        .then(subscription => console.log(subscription));
-        /*
-        pagarme.client.connect({ api_key: API_KEY })
-        .then(client => client.subscriptions.create({
-            plan_id: dataAssinatura.plan_id,
-            card_id: dataAssinatura.card_id,
-            payment_method: dataAssinatura.payment_method,
+            });
+        
+        return operacao;
+
+    }
+
+    async atualizarAssinatura(idAssinatura, dataAssinatura) {
+        const conexao = await pagarme.client.connect({ api_key: API_KEY });
+        const operacao = await conexao.subscriptions.update({
+            id: idAssinatura,
+            plan_id: ID_PLANO_PROFISSIONAL,
+            card_number: dataAssinatura.card_number,
+            card_holder_name: dataAssinatura.card_holder_name,
+            card_expiration_date: dataAssinatura.card_expiration_date,
+            card_cvv: dataAssinatura.card_cvv,
             customer: {
-            email: dataAssinatura.customer.email,
-            name: dataAssinatura.customer.name,
-            document_number: dataAssinatura.customer.document_number,
-            address: {
-                zipcode: dataAssinatura.customer.address.zipcode,
-                neighborhood: dataAssinatura.customer.address.neighborhood,
-                street: dataAssinatura.customer.address.street,
-                street_number: dataAssinatura.customer.address.street_number,
-            },
-            phone: {
-                number: dataAssinatura.customer.phone.number,
-                ddd: dataAssinatura.customer.phone.ddd
-                }
+                email: dataAssinatura.customer.email,
+                document_number: dataAssinatura.customer.document_number
             }
-            }));
-            */
-        // then( assinatura => console.log('dados assinatura: ', assinatura));
+            });
+        
+        return operacao;
+
     }
 
     cancelarAssinatura(idAssinatura) {
