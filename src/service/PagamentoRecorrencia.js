@@ -60,6 +60,7 @@ class PagamentoRecorrencia {
             card_holder_name: dataAssinatura.card_holder_name,
             card_expiration_date: dataAssinatura.card_expiration_date,
             card_cvv: dataAssinatura.card_cvv,
+            payment_method: 'credit_card',
             customer: {
                 email: dataAssinatura.customer.email,
                 document_number: dataAssinatura.customer.document_number
@@ -70,10 +71,11 @@ class PagamentoRecorrencia {
 
     }
 
-    cancelarAssinatura(idAssinatura) {
-        pagarme.client.connect({ api_key: API_KEY })
-        .then(client => client.subscriptions.cancel({ id: idAssinatura }))
-        .then(subscription => console.log(subscription))
+    async cancelarAssinatura(idAssinatura) {
+        const conexao = await pagarme.client.connect({ api_key: API_KEY });
+        const operacao = await conexao.subscriptions.cancel({ id: idAssinatura });
+        
+        return operacao;
     }
 
     obtemTransacoesAssinatura(idAssinatura) {

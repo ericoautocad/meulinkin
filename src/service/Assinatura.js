@@ -77,7 +77,12 @@ class Assinatura {
                         data_fim: new Date(),
                         status: 'desativada' 
                     },
-                    { where: { status: 'ativa' }},
+                    { 
+                        where: { 
+                            usuario_id: idUsuario,
+                            status: 'ativa' 
+                        }
+                    },
                     { transaction: t }
                 );
 
@@ -127,9 +132,74 @@ class Assinatura {
                 if(!contratacao.id) {
                     throw new Error('contratacao invalida.');
                 }
-                console.log(contratacao)
 
                 return assinatura;
+
+            });
+
+            return assinaturaAtualizada;
+
+
+        } catch (error) {
+
+            return false;
+        
+        }
+    }
+
+    // cancelar assinatura
+    async cancelarAssinatura(idUsuario) {
+        try {
+            
+            const assinaturaAtualizada = await Sequelize.transaction(async (t) => {
+
+                const assinatura = await AssinaturaModel.findOne({
+                    where: {
+                        usuario_id: idUsuario,
+                        plano_id: 2,
+                        tipo: 'paga',
+                        status: 'ativa'
+                    }
+                }, { transaction: t });
+
+                if(!assinatura) {
+                    throw new Error('assinatura nao encontrada.');
+                }
+
+                const pagamento = new PagamentoRecorrencia();
+                const cancelamento = await pagamento.cancelarAssinatura(assinatura.assinatura_pagamento_id);
+
+                if(!cancelamento.id) {
+                    throw new Error('cancelamento invalido.');
+                }
+                console.log(cancelamento);
+
+                const desativaAsinaturaPaga = AssinaturaModel.update(
+                    {
+                        data_fim: new Date(),
+                        status: 'desativada' 
+                    },
+                    { 
+                        where: {
+                            usuario_id: idUsuario,
+                            plano_id: 2,
+                            tipo: 'paga',
+                            status: 'ativa' 
+                    }},
+                    { transaction: t }
+                );
+
+                const dadosAssinatura = {
+                    usuario_id: idUsuario,
+                    plano_id: 1,
+                    data_inicio: new Date(),
+                    tipo: 'gratis',
+                    status: 'ativa'
+                };
+
+                const novaAssinatura = await AssinaturaModel.create(dadosAssinatura, { transaction: t });
+
+                return novaAssinatura;
 
             });
 
@@ -142,7 +212,6 @@ class Assinatura {
         
         }
     }
-    // cancelar assinatura
 }
 
 module.exports = Assinatura;
