@@ -25,12 +25,12 @@ module.exports = (app, passport) => {
 	// 	res.render('register',{message: req.flash('message')});
 	// });
 
-	// /* Handle Registration POST */
-	// router.post('/signup', passport.authenticate('signup', {
-	// 	successRedirect: '/home',
-	// 	failureRedirect: '/signup',
-	// 	failureFlash : true  
-	// }));
+	/* Handle Registration POST */
+	app.post('/cadastro', passport.authenticate('sessao-cadastro', {
+		successRedirect: '/pagamento/pro',
+		failureRedirect: '/test',
+		failureFlash : true  
+	}));
 
 	// /* GET Home Page */
 	// router.get('/home', isAuthenticated, function(req, res){
