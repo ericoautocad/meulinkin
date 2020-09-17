@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const helmet = require('helmet');
 const nunjucks = require('nunjucks');
+const passport = require('passport');
+const expressSession = require('express-session');
 const app = express();
 const port = 8080;
 
@@ -25,7 +27,17 @@ const engineTemplate = nunjucks.configure('src/view', {
 
 engineTemplate.addGlobal('urlSite', 'http://localhost:8080');
 
-require('./src/rotas')(app);
+// Configuring Passport
+// TODO - Why Do we need this key ?
+app.use(expressSession({secret: 'chaveSecretaPassaporte'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Initialize Passport
+var initPassport = require('./src/service/usuario/ConfiguracaoPassport');
+initPassport(passport);
+
+require('./src/rotas')(app, passport);
 
 app.use(express.static('public'));
 
