@@ -7,8 +7,13 @@ const helmet = require('helmet');
 const nunjucks = require('nunjucks');
 const passport = require('passport');
 const expressSession = require('express-session');
+require('dotenv-safe').config({
+    allowEmptyValues: true,
+    example: './src/definition/.env.example'
+});
 const app = express();
 const port = 8080;
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,8 +30,8 @@ const engineTemplate = nunjucks.configure('src/view', {
     express: app
 });
 
-engineTemplate.addGlobal('urlSite', 'http://localhost:8080');
-
+engineTemplate.addGlobal('urlSite', process.env.URL_SITE);
+console.log(process.env.URL_SITE);
 // Configuring Passport
 // TODO - Why Do we need this key ?
 app.use(expressSession({secret: 'chaveSecretaPassaporte'}));

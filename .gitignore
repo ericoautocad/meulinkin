@@ -1,2 +1,4 @@
 node_modules/
 banco/
+
+src/definition/.env

@@ -1,5 +1,6 @@
-const usuarioModel = require('./../../model/usuario')
-module.exports = async function(req, res)
+const CadastroInicial = require('./../../service/usuario/CadastroInicial');
+
+module.exports = async function(req, res, next)
 {
 
     const errosValidacao = (req.erros_validacao)? req.erros_validacao : null;
@@ -10,10 +11,12 @@ module.exports = async function(req, res)
         
     } else {
         let dadosUsuario = req.body;
-        console.log(dadosUsuario);
-        await usuarioModel.create(dadosUsuario);
+        const servico = new CadastroInicial();
 
-        return res.redirect('/perfil');
+        await servico.cadastroUsuario(dadosUsuario);
+
+        return next();
+
 
     }
     

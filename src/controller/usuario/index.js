@@ -2,19 +2,44 @@ const express = require('express');
 const router = express.Router();
 const validaRequisicao = require('./../../validation/ValidaRequisicao');
 const validaFormCadastro = require('./../../validation/usuario/ValidaFormCadastro');
+// const passport = require('passport');
 
-router.get('/', require('./cadastro'));
 
-router.post('/cadastro', 
-validaRequisicao(validaFormCadastro),
-require('./cadastropost')
-);
 
-router.get('/perfil', 
-function(req, res)
-{
+const controles = (passport) => {
+    
+    router.get('/usuario/cadastro', require('./cadastro'));
 
-    return res.render('perfil/perfil');
-});
+    router.post(
+        '/usuario/cadastro', 
+        validaRequisicao(validaFormCadastro),
+        require('./cadastropost'),
+        passport.authenticate('sessao-cadastro'),
+        function(req, res) {
+            if (req.user) {
 
-module.exports = router;
+                return res.redirect('/perfil');
+          
+            } else {
+
+                return res.redirect('/login'); 
+
+            }
+          
+        }
+    );
+    
+    router.get('/perfil', 
+    function(req, res)
+    {
+    
+        return res.render('perfil/perfil');
+    });
+
+    
+
+    return router;
+
+}
+
+module.exports = controles;

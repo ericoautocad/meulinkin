@@ -9,9 +9,9 @@ module.exports = function(passport){
             usernameField: 'email',
             passwordField: 'senha'
         },
-        async function(req, username, password, done) {
+        function(req, username, password, done) {
             
-            findOrCreateUser =  function(){
+            findOrCreateUser =  async function(){
                 
                 try{
                     const cadastrado = await UsuarioModel.findOne({ where: { email: username} } );
@@ -23,7 +23,12 @@ module.exports = function(passport){
                         const dadosNovoUsuario = { email: req.body.email, senha: createHash( req.body.senha)}
                         const novoUsuario = await UsuarioModel.create(dadosNovoUsuario);
     
-                        return done(null, novoUsuario);
+                        const sessao = {
+                            id: novoUsuario.id,
+                            email: novoUsuario.email
+                        }
+
+                        return done(null, sessao);
     
                     }
                         
