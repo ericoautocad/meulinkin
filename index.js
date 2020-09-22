@@ -34,7 +34,7 @@ engineTemplate.addGlobal('urlSite', process.env.URL_SITE);
 console.log(process.env.URL_SITE);
 // Configuring Passport
 // TODO - Why Do we need this key ?
-app.use(expressSession({secret: 'chaveSecretaPassaporte'}));
+app.use(expressSession({secret: 'chaveSecretaPassaporte', resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 

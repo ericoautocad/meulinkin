@@ -1,38 +1,12 @@
-var isAuthenticated = function (req, res, next) {
-	
-	if (req.isAuthenticated()) {
-		
-		return next();
-
-	}
-		
-
-	res.redirect('/login');
-};
+const validaAutenticacao = require('./validation/usuario/ValidaAutenticacao');
 
 module.exports = (app, passport) => {
-    // app.use('/', require('./controller/home/index'));
-    app.use('/', require('./controller/usuario/index')(passport) );
-    app.use('/pagamento', isAuthenticated, require('./controller/pagamento/index'));
 
-    // /* Handle Login POST */
-	// router.post('/login', passport.authenticate('login', {
-	// 	successRedirect: '/home',
-	// 	failureRedirect: '/',
-	// 	failureFlash : true  
-	// }));
-
-	// /* GET Registration Page */
-	// router.get('/signup', function(req, res){
-	// 	res.render('register',{message: req.flash('message')});
-	// });
-
-	/* Handle Registration POST */
-	app.post('/cadastro', passport.authenticate('sessao-cadastro', {
-		successRedirect: '/pagamento/pro',
-		failureRedirect: '/test',
-		failureFlash : true  
-	}));
+	app.use('/usuario', require('./controller/usuario/index')(passport) );
+	app.use('/login', require('./controller/usuario/loginget') );
+    app.use('/', require('./controller/home/index') );
+	app.use('/pagamento', validaAutenticacao, require('./controller/pagamento/index') );
+	app.use('/perfil', validaAutenticacao, require('./controller/perfil/index') );
 
 	// /* GET Home Page */
 	// router.get('/home', isAuthenticated, function(req, res){
