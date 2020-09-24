@@ -12,7 +12,6 @@ module.exports = function(passport){
         
         try{
             const usuario = await UsuarioModel.findOne({ where: { id: id} } );
-            console.log('dados de sessao: ', id, usuario)
             const sessao = {
             id: usuario.id,
             email: usuario.email

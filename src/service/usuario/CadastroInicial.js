@@ -6,8 +6,7 @@ class CadastroInicial {
 
     async cadastroUsuario(dadosUsuario) {
         try {
-
-            dadosUsuario.senha = criptografia.hashSync(dadosUsuario.senha, criptografia.genSaltSync(10), null);
+            novoUsuario.senha = criptografia.hashSync(dadosUsuario.senha, criptografia.genSaltSync(10), null);
             const novoUsuario =  await usuarioModel.create(dadosUsuario);
 
             if (novoUsuario) {

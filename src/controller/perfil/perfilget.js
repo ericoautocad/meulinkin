@@ -1,6 +1,6 @@
 
 module.exports = (req, res) => {
     
-    return res.render('home/home');
+    return res.render('perfil/perfil');
 
 };

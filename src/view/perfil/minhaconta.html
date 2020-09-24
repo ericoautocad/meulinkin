@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <title>O Link.in</title>
+</head>
+
+<body>
+    <header>
+        <!-- Menu -->
+        <aside class="sidebar">
+            <label for="handle"><i class="fas fa-bars bars"></i></label>
+            <input id="handle" type="checkbox" name="handle">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Início
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Suporte
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Minha conta
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-padrao">
+                            Mudar para Pró
+                        </a>
+                    </li>
+                    <li class="mini">
+                        <a href="#">
+                            Sair
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <a href="#" class="logo">
+            <img src="images/logo-olinkin.png">
+        </a>
+        <!-- nav desktop -->
+        <nav class="desktop">
+            <a href="#">Sair</a>
+            <a href="#" class="btn-padrao">Mudar para Pró</a>
+            <a href="#">Minha conta</a>
+            <a href="#">Suporte</a>
+            <a href="#">Início</a>
+        </nav>
+    </header>
+    <div class="wrap">
+        <div class="cadastro">
+            <h2>Minha conta</h2>
+
+            <form class="padrao">
+                <div class="flex-one">
+                    <label class="toggleSwitch xlarge" onclick="">
+                        <input type="checkbox" checked />
+                        <span>
+                        </span>
+                        <a></a>
+                    </label>
+                    <span class="ativa">Ativa</span>
+                </div>
+                <div>
+                    <label for="E-mail">E-mail</label>
+                    <input type="email" name="email" required value="lennonrc84@gmail.com">
+                </div>
+                <div>
+                    <label for="asenha">Alterar senha:</label>
+                    <input type="password" name="asenha" required>
+                </div>
+                <div>
+                    <label for="casenha">Confirmar nova senha:</label>
+                    <input type="password" name="casenha" required>
+                </div>
+                <div>
+                    <label for="tel">Telefone:</label>
+                    <input type="text" name="tel" onkeydown="maskTel()" maxlength="15" required>
+                </div>
+                <div>
+                    <label>Plano atual:</label>
+                    <div class="flex-one">
+                        <span>Free</span>
+                        <a href="#">Mudar pra Pró</a>
+                    </div>
+                </div>
+                <div>
+                    <label>Forma de pagamento:</label>
+                    <div class="flex-one">
+                        <span>Mastercard - **** 0157</span>
+                        <a href="#">Alterar</a>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="salvar" class="btn-padrao">
+                </div>
+                <div>
+                    <a href="#" class="link-excluir"><i class="far fa-trash-alt"></i> Excluir minha conta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+       crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+       crossorigin="anonymous"></script>
+   <!-- Optional JavaScript -->
+   <script src="js/main.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
+</body>
+
+</html>

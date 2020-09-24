@@ -12,7 +12,6 @@ module.exports = function(passport){
         async function(req, username, password, done) { 
 
             try {
-
                 const usuario = await UsuarioModel.findOne({ where: { email: username} } );
 
                 if (!usuario){
