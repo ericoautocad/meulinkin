@@ -30,7 +30,7 @@ const engineTemplate = nunjucks.configure('src/view', {
     express: app
 });
 
-engineTemplate.addGlobal('urlSite', process.env.URL_SITE);
+engineTemplate.addGlobal('urlSite', 'http://localhost:8080');
 
 app.use(expressSession({secret: 'chaveSecretaPassaporte', resave: false, saveUninitialized: true}));
 app.use(passport.initialize());

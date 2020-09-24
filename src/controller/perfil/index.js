@@ -3,7 +3,7 @@ const router = express.Router();
 
 const controles = () => {
 
-    router.get('/perfil/conta', require('./contaget'));
+    router.get('/', require('./contaget'));
 
     return router;
 
