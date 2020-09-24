@@ -29,12 +29,12 @@ const controles = (passport) => {
         }
     );
     
-    router.get('/perfil', 
-    function(req, res)
-    {
+    // router.get('/perfil', 
+    // function(req, res)
+    // {
     
-        return res.render('perfil/perfil');
-    });
+    //     return res.render('perfil/perfil');
+    // });
 
     
 
