@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{urlSite}}/css/style.css">
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -53,7 +53,7 @@
             </nav>
         </aside>
         <a href="#" class="logo">
-            <img src="images/logo-olinkin.png">
+            <img src="{{urlSite}}/images/logo-olinkin.png">
         </a>
         <!-- nav desktop -->
         <nav class="desktop">
@@ -71,7 +71,7 @@
             <form class="padrao">
                 <div class="flex-one">
                     <label class="toggleSwitch xlarge" onclick="">
-                        <input type="checkbox" checked />
+                        <input type="checkbox" {% if inputParams.usuario.status %} checked {% endif %}  />
                         <span>
                         </span>
                         <a></a>
@@ -80,15 +80,15 @@
                 </div>
                 <div>
                     <label for="E-mail">E-mail</label>
-                    <input type="email" name="email" required value="lennonrc84@gmail.com">
+                    <input type="email" name="email" required value="{{inputParams.usuario.email}}">
                 </div>
                 <div>
-                    <label for="asenha">Alterar senha:</label>
-                    <input type="password" name="asenha" required>
+                    <label for="senha">Alterar senha:</label>
+                    <input type="password" name="senha" required>
                 </div>
                 <div>
-                    <label for="casenha">Confirmar nova senha:</label>
-                    <input type="password" name="casenha" required>
+                    <label for="csenha">Confirmar nova senha:</label>
+                    <input type="password" name="csenha" required>
                 </div>
                 <div>
                     <label for="tel">Telefone:</label>
@@ -97,17 +97,23 @@
                 <div>
                     <label>Plano atual:</label>
                     <div class="flex-one">
-                        <span>Free</span>
-                        <a href="#">Mudar pra Pró</a>
+                        <span>{{inputParams.plano.nome}}</span>
+                        {% if inputParams.temporario %} 
+
+                            <a href="/pagamento/pro">Mudar pra Pró</a>
+
+                        {% endif %}
                     </div>
                 </div>
-                <div>
-                    <label>Forma de pagamento:</label>
-                    <div class="flex-one">
-                        <span>Mastercard - **** 0157</span>
-                        <a href="#">Alterar</a>
+                {% if inputParams.pagamento %} 
+                    <div>
+                        <label>Forma de pagamento:</label>
+                        <div class="flex-one">
+                            <span>{{inputParams.pagamento.brand}} - **** {{inputParams.pagamento.last_digits}}</span>
+                            <a href="/pagamento/alterar/cobranca">Alterar</a>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
                 <div>
                     <input type="submit" value="salvar" class="btn-padrao">
                 </div>

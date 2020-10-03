@@ -13,7 +13,7 @@ const controles = (passport) => {
     router.post(
         '/usuario/cadastro', 
         validaRequisicao(validaFormCadastro),
-        require('./cadastropost'),
+        // require('./cadastropost'),
         passport.authenticate('sessao-cadastro'),
         function(req, res) {
             if (req.user) {

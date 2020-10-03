@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var UsuarioModel = require('../../model/usuario');
-var bCrypt = require('bcrypt-nodejs');
+var criptografia = require('bcrypt-nodejs');
+const Assinatura = require('./../Assinatura');
 
 module.exports = function(passport){
 
@@ -20,12 +21,22 @@ module.exports = function(passport){
                         return done(null, false, {mensagem: 'Usuário já cadastrado!'});
     
                     } else {
-                        const dadosNovoUsuario = { email: req.body.email, senha: createHash( req.body.senha)}
+                        const dadosNovoUsuario = { 
+                            email: req.body.email, 
+                            senha: createHash( req.body.senha),
+                            grupo: 'usuario'
+                        }
                         const novoUsuario = await UsuarioModel.create(dadosNovoUsuario);
+
+                        if(novoUsuario) {
+                            const assinatura = new Assinatura();
+                            await assinatura.criarAssinaturaFree(novoUsuario.id);
+                        }
     
                         const sessao = {
                             id: novoUsuario.id,
-                            email: novoUsuario.email
+                            email: novoUsuario.email,
+                            status: novoUsuario.status
                         }
 
                         return done(null, sessao);
@@ -45,7 +56,7 @@ module.exports = function(passport){
 
     // Generates hash using bCrypt
     var createHash = function(password){
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+        return criptografia.hashSync(password, criptografia.genSaltSync(10), null);
     }
 
 }

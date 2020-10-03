@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.get('/pro', require('./pagamentoproget'));
 router.post('/pro', validaRequisicao(validaFormCartao), require('./pagamentopropost'));
+router.get('/alterar/cobranca', require('./alterarcobrancaget'));
+router.post('/alterar/cobranca', validaRequisicao(validaFormCartao), require('./alterarcobrancapost'));
 
 module.exports = router;

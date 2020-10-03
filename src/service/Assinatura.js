@@ -1,5 +1,6 @@
 const UsuarioModel = require('./../model/usuario');
 const AssinaturaModel = require('./../model/assinatura');
+const PlanoModel = require('./../model/plano');
 const Sequelize = require('./../model/database');
 const PagamentoRecorrencia = require('./PagamentoRecorrencia');
 
@@ -211,6 +212,51 @@ class Assinatura {
             return false;
         
         }
+    }
+
+    // obter assinatura
+    async buscarDadosAssinatura(idUsuario) {
+        
+        try {
+            
+            const assinaturaCriada = await Sequelize.transaction(async (t) => {
+
+                let assinatura = await AssinaturaModel.findOne({
+                    where: {
+                        usuario_id: idUsuario,
+                        status: 'ativa'
+                    },
+                    include: [
+                        { model: UsuarioModel, required: false },
+                        { model: PlanoModel, required: false }
+                    ]
+                }, { transaction: t });
+
+                if(!assinatura) {
+                    throw new Error('assinatura nao encontrada.');
+                } else {
+                    
+                    if(assinatura.tipo === 'paga') {
+                        const pagamento = new PagamentoRecorrencia();
+                        const recorrencia = await pagamento.obtemAssinatura(assinatura.assinatura_pagamento_id);
+                        assinatura.pagamento = recorrencia.card;
+                    }
+                }
+                
+                return assinatura;
+
+            });
+
+            return assinaturaCriada;
+
+
+        } catch (error) {
+
+            return false;
+        
+        }
+
+
     }
 }
 

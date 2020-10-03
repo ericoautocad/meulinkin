@@ -28,7 +28,8 @@ module.exports = function(passport){
                
                 const sessao = {
                     id: usuario.id,
-                    email: usuario.email
+                    email: usuario.email,
+                    status: usuario.status
                 }
                 
                 return done(null, sessao);

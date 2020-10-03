@@ -84,10 +84,11 @@ class PagamentoRecorrencia {
         .then(subscription => console.log(subscription))
     }
 
-    obtemAssinatura(idAssinatura) {
-        pagarme.client.connect({ api_key: API_KEY })
-        .then(client => client.subscriptions.find({ id: idAssinatura }))
-        .then(subscription => console.log(subscription))
+    async obtemAssinatura(idAssinatura) {
+        const conexao = await pagarme.client.connect({ api_key: API_KEY });
+        const operacao = await conexao.subscriptions.find({ id: idAssinatura });
+        
+        return operacao;
     }
 
     verificaCartao(dadosCartao) {
